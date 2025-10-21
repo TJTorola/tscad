@@ -67,14 +67,16 @@ const Renderer = ({ geometries }: { geometries: Geom3[] }) => {
   const cameraControlsRef = useRef<any>(null);
 
   return (
-    <Canvas shadows camera={{ position: [6, 6, 10], fov: 60 }}>
-      <ambientLight intensity={2} />
-      <directionalLight position={[10, 10, 10]} intensity={2} />
-      <axesHelper args={[1000]} />
-      <CameraControls ref={cameraControlsRef} />
+    <Canvas dpr={[1, 2]} camera={{ position: [6, 6, 10], fov: 60 }}>
       {geometries.map((geometry: Geom3, idx: number) => (
         <Mesh key={idx} geometry={geometry} />
       ))}
+      <axesHelper args={[1000]} />
+      <CameraControls ref={cameraControlsRef} />
+      <directionalLight position={[10, 7, 10]} intensity={1} />
+      <directionalLight position={[10, -10, -12]} intensity={1} />
+      <directionalLight position={[-10, -3, 10]} intensity={1} />
+      <ambientLight intensity={0.3} />
     </Canvas>
   );
 };
