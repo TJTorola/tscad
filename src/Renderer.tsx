@@ -63,7 +63,7 @@ const Mesh = ({ geometry }: { geometry: Geom3 }) => {
   );
 };
 
-const ThreeRenderer = ({ geometries }: { geometries: Geom3[] }) => {
+const Renderer = ({ geometries }: { geometries: Geom3[] }) => {
   const cameraControlsRef = useRef<any>(null);
 
   return (
@@ -79,4 +79,4 @@ const ThreeRenderer = ({ geometries }: { geometries: Geom3[] }) => {
   );
 };
 
-export default ThreeRenderer;
+export default Renderer;

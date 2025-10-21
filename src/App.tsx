@@ -1,5 +1,5 @@
 import { cube } from '@jscad/modeling/src/primitives';
-import ThreeRenderer from './ThreeRenderer';
+import Renderer from './Renderer';
 import { translate } from '@jscad/modeling/src/operations/transforms';
 import { useMemo } from 'react';
 
@@ -16,7 +16,7 @@ const App = () => {
     }
     return ret;
   }, []);
-  return <ThreeRenderer geometries={geometries} />;
+  return <Renderer geometries={geometries} />;
 };
 
 export default App;
