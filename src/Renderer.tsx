@@ -1,6 +1,6 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { BufferAttribute, BufferGeometry, MeshPhongMaterial } from 'three';
-import { CameraControls } from '@react-three/drei';
+import { CameraControls, Grid } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
 import type { Geom3 } from '@jscad/modeling/src/geometries/types';
@@ -46,7 +46,7 @@ const useBufferGeometry = (geometry: Geom3) => {
 };
 
 const Mesh = ({ geometry }: { geometry: Geom3 }) => {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
   const bufferGeometry = useBufferGeometry(geometry);
   useEffect(() => {
     if (geometry.transforms) {
@@ -67,12 +67,12 @@ const Renderer = ({ geometries }: { geometries: Geom3[] }) => {
   const cameraControlsRef = useRef<any>(null);
 
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [6, 6, 10], fov: 60 }}>
-      {geometries.map((geometry: Geom3, idx: number) => (
-        <Mesh key={idx} geometry={geometry} />
+    <Canvas dpr={[1, 2]} camera={{ position: [256, 256, 512], far: 10000 }}>
+      {geometries.map((geometry: Geom3) => (
+        <Mesh geometry={geometry} />
       ))}
-      <axesHelper args={[1000]} />
-      <CameraControls ref={cameraControlsRef} />
+      <axesHelper args={[10000]} />
+      <CameraControls ref={cameraControlsRef} maxDistance={5000} />
       <directionalLight position={[10, 7, 10]} intensity={1} />
       <directionalLight position={[10, -10, -12]} intensity={1} />
       <directionalLight position={[-10, -3, 10]} intensity={1} />
